@@ -12,7 +12,6 @@ import { URI } from 'vs/base/common/uri';
 import { IFileQuery, IFileSearchStats, IFolderQuery, IProgressMessage, IRawFileMatch, ISearchEngine, ISearchEngineStats, ISearchEngineSuccess, ISearchProgressItem, ISerializedFileMatch, ISerializedSearchComplete, ISerializedSearchProgressItem, ISerializedSearchSuccess, isFileMatch, QueryType } from 'vs/workbench/services/search/common/search';
 import { IProgressCallback, SearchService as RawSearchService } from 'vs/workbench/services/search/node/rawSearchService';
 import { DiskSearch } from 'vs/workbench/services/search/electron-browser/searchService';
-import { flakySuite } from 'vs/base/test/node/testUtils';
 
 const TEST_FOLDER_QUERIES = [
 	{ folder: URI.file(path.normalize('/some/where')) }
@@ -71,7 +70,7 @@ class TestSearchEngine implements ISearchEngine<IRawFileMatch> {
 	}
 }
 
-flakySuite('RawSearchService', () => {
+suite('RawSearchService', () => {
 
 	const rawSearch: IFileQuery = {
 		type: QueryType.File,

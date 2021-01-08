@@ -6,11 +6,11 @@
 import * as assert from 'assert';
 import * as os from 'os';
 import * as path from 'vs/base/common/path';
-import { flakySuite, getRandomTestPath } from 'vs/base/test/node/testUtils';
+import { getRandomTestPath } from 'vs/base/test/node/testUtils';
 import { FileStorage } from 'vs/platform/state/node/stateService';
 import { mkdirp, rimraf, writeFileSync } from 'vs/base/node/pfs';
 
-flakySuite('StateService', () => {
+suite('StateService', () => {
 	const parentDir = getRandomTestPath(os.tmpdir(), 'vsctests', 'stateservice');
 	const storageFile = path.join(parentDir, 'storage.json');
 

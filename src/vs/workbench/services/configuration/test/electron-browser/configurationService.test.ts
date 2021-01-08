@@ -55,7 +55,6 @@ import { BrowserWorkbenchEnvironmentService } from 'vs/workbench/services/enviro
 import { INativeWorkbenchEnvironmentService } from 'vs/workbench/services/environment/electron-sandbox/environmentService';
 import { Event } from 'vs/base/common/event';
 import { UriIdentityService } from 'vs/workbench/services/uriIdentity/common/uriIdentityService';
-import { flakySuite } from 'vs/base/test/node/testUtils';
 
 class TestWorkbenchEnvironmentService extends NativeWorkbenchEnvironmentService {
 
@@ -104,7 +103,7 @@ function setUpWorkspace(folders: string[]): Promise<{ parentDir: string, configP
 }
 
 
-flakySuite('WorkspaceContextService - Folder', () => {
+suite('WorkspaceContextService - Folder', () => {
 
 	let workspaceName = `testWorkspace${uuid.generateUuid()}`, parentResource: string, workspaceResource: string, workspaceContextService: IWorkspaceContextService;
 	const disposables = new DisposableStore();
@@ -165,7 +164,7 @@ flakySuite('WorkspaceContextService - Folder', () => {
 	test('workspace is complete', () => workspaceContextService.getCompleteWorkspace());
 });
 
-flakySuite('WorkspaceContextService - Workspace', () => {
+suite('WorkspaceContextService - Workspace', () => {
 
 	let parentResource: string, testObject: WorkspaceService, instantiationService: TestInstantiationService;
 	const disposables = new DisposableStore();
@@ -224,7 +223,7 @@ flakySuite('WorkspaceContextService - Workspace', () => {
 
 });
 
-flakySuite('WorkspaceContextService - Workspace Editing', () => {
+suite('WorkspaceContextService - Workspace Editing', () => {
 
 	let parentResource: string, testObject: WorkspaceService, instantiationService: TestInstantiationService;
 	const disposables = new DisposableStore();
@@ -465,7 +464,7 @@ flakySuite('WorkspaceContextService - Workspace Editing', () => {
 
 });
 
-flakySuite('WorkspaceService - Initialization', () => {
+suite('WorkspaceService - Initialization', () => {
 
 	let parentResource: string, workspaceConfigPath: URI, testObject: WorkspaceService, globalSettingsFile: string;
 	const configurationRegistry = Registry.as<IConfigurationRegistry>(ConfigurationExtensions.Configuration);
@@ -723,7 +722,7 @@ flakySuite('WorkspaceService - Initialization', () => {
 
 });
 
-flakySuite('WorkspaceConfigurationService - Folder', () => {
+suite('WorkspaceConfigurationService - Folder', () => {
 
 	let workspaceName = `testWorkspace${uuid.generateUuid()}`, parentResource: string, workspaceDir: string, testObject: IConfigurationService, globalSettingsFile: string, globalTasksFile: string, workspaceService: WorkspaceService;
 	const configurationRegistry = Registry.as<IConfigurationRegistry>(ConfigurationExtensions.Configuration);
@@ -1255,7 +1254,7 @@ flakySuite('WorkspaceConfigurationService - Folder', () => {
 	});
 });
 
-flakySuite('WorkspaceConfigurationService-Multiroot', () => {
+suite('WorkspaceConfigurationService-Multiroot', () => {
 
 	let parentResource: string, workspaceContextService: IWorkspaceContextService, jsonEditingServce: IJSONEditingService, testObject: IConfigurationService, globalSettingsFile: string;
 	const configurationRegistry = Registry.as<IConfigurationRegistry>(ConfigurationExtensions.Configuration);
@@ -1878,7 +1877,7 @@ flakySuite('WorkspaceConfigurationService-Multiroot', () => {
 	});
 });
 
-flakySuite('WorkspaceConfigurationService - Remote Folder', () => {
+suite('WorkspaceConfigurationService - Remote Folder', () => {
 
 	let workspaceName = `testWorkspace${uuid.generateUuid()}`, parentResource: string, workspaceDir: string, testObject: WorkspaceService, globalSettingsFile: string, remoteSettingsFile: string, remoteSettingsResource: URI, instantiationService: TestInstantiationService, resolveRemoteEnvironment: () => void;
 	const remoteAuthority = 'configuraiton-tests';

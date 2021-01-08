@@ -8,7 +8,7 @@ import { tmpdir } from 'os';
 import { FileService } from 'vs/platform/files/common/fileService';
 import { Schemas } from 'vs/base/common/network';
 import { DiskFileSystemProvider } from 'vs/platform/files/node/diskFileSystemProvider';
-import { flakySuite, getRandomTestPath } from 'vs/base/test/node/testUtils';
+import { getRandomTestPath } from 'vs/base/test/node/testUtils';
 import { generateUuid } from 'vs/base/common/uuid';
 import { join, basename, dirname, posix } from 'vs/base/common/path';
 import { getPathFromAmdModule } from 'vs/base/common/amd';
@@ -118,7 +118,7 @@ export class TestDiskFileSystemProvider extends DiskFileSystemProvider {
 	}
 }
 
-flakySuite('Disk File Service', function () {
+suite('Disk File Service', function () {
 
 	const parentDir = getRandomTestPath(tmpdir(), 'vsctests', 'diskfileservice');
 	const testSchema = 'test';

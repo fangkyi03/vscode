@@ -15,9 +15,8 @@ import { NativeEnvironmentService } from 'vs/platform/environment/node/environme
 import { parseArgs, OPTIONS } from 'vs/platform/environment/node/argv';
 import { InMemoryStorageDatabase } from 'vs/base/parts/storage/common/storage';
 import { URI } from 'vs/base/common/uri';
-import { flakySuite } from 'vs/base/test/node/testUtils';
 
-flakySuite('NativeStorageService', function () {
+suite('NativeStorageService', function () {
 
 	function uniqueStorageDir(): string {
 		const id = generateUuid();

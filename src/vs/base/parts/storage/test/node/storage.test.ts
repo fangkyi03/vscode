@@ -13,9 +13,8 @@ import { mkdirp, writeFile, exists, unlink, rimraf } from 'vs/base/node/pfs';
 import { timeout } from 'vs/base/common/async';
 import { Event, Emitter } from 'vs/base/common/event';
 import { isWindows } from 'vs/base/common/platform';
-import { flakySuite } from 'vs/base/test/node/testUtils';
 
-flakySuite('Storage Library', function () {
+suite('Storage Library', function () {
 
 	function uniqueStorageDir(): string {
 		const id = generateUuid();
@@ -286,7 +285,7 @@ flakySuite('Storage Library', function () {
 	});
 });
 
-flakySuite('SQLite Storage Library', function () {
+suite('SQLite Storage Library', function () {
 
 	function uniqueStorageDir(): string {
 		const id = generateUuid();

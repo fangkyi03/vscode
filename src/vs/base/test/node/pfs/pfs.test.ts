@@ -14,9 +14,8 @@ import { getPathFromAmdModule } from 'vs/base/common/amd';
 import { isWindows } from 'vs/base/common/platform';
 import { canNormalize } from 'vs/base/common/normalization';
 import { VSBuffer } from 'vs/base/common/buffer';
-import { flakySuite } from 'vs/base/test/node/testUtils';
 
-flakySuite('PFS', function () {
+suite('PFS', function () {
 
 	test('writeFile', async () => {
 		const id = uuid.generateUuid();

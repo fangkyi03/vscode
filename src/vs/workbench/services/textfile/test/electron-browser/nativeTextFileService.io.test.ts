@@ -12,7 +12,7 @@ import { rimraf, copy, readFile, exists, stat } from 'vs/base/node/pfs';
 import { DisposableStore } from 'vs/base/common/lifecycle';
 import { FileService } from 'vs/platform/files/common/fileService';
 import { NullLogService } from 'vs/platform/log/common/log';
-import { flakySuite, getRandomTestPath } from 'vs/base/test/node/testUtils';
+import { getRandomTestPath } from 'vs/base/test/node/testUtils';
 import { tmpdir } from 'os';
 import { DiskFileSystemProvider } from 'vs/platform/files/node/diskFileSystemProvider';
 import { generateUuid } from 'vs/base/common/uuid';
@@ -25,7 +25,7 @@ import { IWorkingCopyFileService, WorkingCopyFileService } from 'vs/workbench/se
 import { TestWorkingCopyService } from 'vs/workbench/test/common/workbenchTestServices';
 import { UriIdentityService } from 'vs/workbench/services/uriIdentity/common/uriIdentityService';
 
-flakySuite('Files - NativeTextFileService i/o', function () {
+suite('Files - NativeTextFileService i/o', function () {
 	const parentDir = getRandomTestPath(tmpdir(), 'vsctests', 'textfileservice');
 
 	const disposables = new DisposableStore();
