@@ -17,8 +17,8 @@ export function flakySuite(title: string, fn: (this: Suite) => void): Suite {
 		// Flaky suites need retries and timeout to complete
 		// e.g. because they access the file system which can
 		// be unreliable depending on the environment.
-		this.retries(3);
-		this.timeout(1000 * 20);
+		// this.retries(3);
+		// this.timeout(1000 * 20);
 
 		// Invoke suite ensuring that `this` is
 		// properly wired in.
