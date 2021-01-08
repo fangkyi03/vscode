@@ -720,12 +720,7 @@ suite('FileSearchEngine', () => {
 
 suite('FileWalker', () => {
 
-	test('Find: exclude subfolder', function (done: () => void) {
-		if (platform.isWindows) {
-			done();
-			return;
-		}
-
+	(platform.isWindows ? test.skip : test)('Find: exclude subfolder', function (done: () => void) {
 		const file0 = './more/file.txt';
 		const file1 = './examples/subfolder/subfile.txt';
 
@@ -755,12 +750,7 @@ suite('FileWalker', () => {
 		});
 	});
 
-	test('Find: folder excludes', function (done: () => void) {
-		if (platform.isWindows) {
-			done();
-			return;
-		}
-
+	(platform.isWindows ? test.skip : test)('Find: folder excludes', function (done: () => void) {
 		const folderQueries: IFolderQuery[] = [
 			{
 				folder: URI.file(TEST_FIXTURES),
@@ -781,12 +771,7 @@ suite('FileWalker', () => {
 		});
 	});
 
-	test('Find: exclude multiple folders', function (done: () => void) {
-		if (platform.isWindows) {
-			done();
-			return;
-		}
-
+	(platform.isWindows ? test.skip : test)('Find: exclude multiple folders', function (done: () => void) {
 		const file0 = './index.html';
 		const file1 = './examples/small.js';
 		const file2 = './more/file.txt';
@@ -811,12 +796,7 @@ suite('FileWalker', () => {
 		});
 	});
 
-	test('Find: exclude folder path suffix', function (done: () => void) {
-		if (platform.isWindows) {
-			done();
-			return;
-		}
-
+	(platform.isWindows ? test.skip : test)('Find: exclude folder path suffix', function (done: () => void) {
 		const file0 = './examples/company.js';
 		const file1 = './examples/subfolder/subfile.txt';
 
@@ -838,12 +818,7 @@ suite('FileWalker', () => {
 		});
 	});
 
-	test('Find: exclude subfolder path suffix', function (done: () => void) {
-		if (platform.isWindows) {
-			done();
-			return;
-		}
-
+	(platform.isWindows ? test.skip : test)('Find: exclude subfolder path suffix', function (done: () => void) {
 		const file0 = './examples/subfolder/subfile.txt';
 		const file1 = './examples/subfolder/anotherfolder/anotherfile.txt';
 
@@ -865,12 +840,7 @@ suite('FileWalker', () => {
 		});
 	});
 
-	test('Find: exclude folder path', function (done: () => void) {
-		if (platform.isWindows) {
-			done();
-			return;
-		}
-
+	(platform.isWindows ? test.skip : test)('Find: exclude folder path', function (done: () => void) {
 		const file0 = './examples/company.js';
 		const file1 = './examples/subfolder/subfile.txt';
 
@@ -892,12 +862,7 @@ suite('FileWalker', () => {
 		});
 	});
 
-	test('Find: exclude combination of paths', function (done: () => void) {
-		if (platform.isWindows) {
-			done();
-			return;
-		}
-
+	(platform.isWindows ? test.skip : test)('Find: exclude combination of paths', function (done: () => void) {
 		const filesIn = [
 			'./examples/subfolder/subfile.txt',
 			'./examples/company.js',
