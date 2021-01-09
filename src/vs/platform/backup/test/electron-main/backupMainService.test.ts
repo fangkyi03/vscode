@@ -605,7 +605,6 @@ suite('BackupMainService', () => {
 	});
 
 	suite('getWorkspaceHash', () => {
-
 		(platform.isLinux ? test.skip : test)('should ignore case on Windows and Mac', () => {
 			if (platform.isMacintosh) {
 				assert.equal(service.getFolderHash(URI.file('/foo')), service.getFolderHash(URI.file('/FOO')));
