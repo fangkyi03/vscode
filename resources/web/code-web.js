@@ -94,34 +94,34 @@ async function getBuiltInExtensionInfos() {
 	/** @type {Object.<string, string>} */
 	const locations = {};
 
-	const [localExtensions, marketplaceExtensions, webDevExtensions] = await Promise.all([
-		extensions.scanBuiltinExtensions(BUILTIN_EXTENSIONS_ROOT),
-		extensions.scanBuiltinExtensions(BUILTIN_MARKETPLACE_EXTENSIONS_ROOT),
-		ensureWebDevExtensions().then(() => extensions.scanBuiltinExtensions(WEB_DEV_EXTENSIONS_ROOT))
-	]);
-	for (const ext of localExtensions) {
-		allExtensions.push(ext);
-		locations[ext.extensionPath] = path.join(BUILTIN_EXTENSIONS_ROOT, ext.extensionPath);
-	}
-	for (const ext of marketplaceExtensions) {
-		allExtensions.push(ext);
-		locations[ext.extensionPath] = path.join(BUILTIN_MARKETPLACE_EXTENSIONS_ROOT, ext.extensionPath);
-	}
-	for (const ext of webDevExtensions) {
-		allExtensions.push(ext);
-		locations[ext.extensionPath] = path.join(WEB_DEV_EXTENSIONS_ROOT, ext.extensionPath);
-	}
-	for (const ext of allExtensions) {
-		if (ext.packageJSON.browser) {
-			let mainFilePath = path.join(locations[ext.extensionPath], ext.packageJSON.browser);
-			if (path.extname(mainFilePath) !== '.js') {
-				mainFilePath += '.js';
-			}
-			if (!await exists(mainFilePath)) {
-				fancyLog(`${ansiColors.red('Error')}: Could not find ${mainFilePath}. Use ${ansiColors.cyan('yarn watch-web')} to build the built-in extensions.`);
-			}
-		}
-	}
+	// const [localExtensions, marketplaceExtensions, webDevExtensions] = await Promise.all([
+	// 	extensions.scanBuiltinExtensions(BUILTIN_EXTENSIONS_ROOT),
+	// 	extensions.scanBuiltinExtensions(BUILTIN_MARKETPLACE_EXTENSIONS_ROOT),
+	// 	ensureWebDevExtensions().then(() => extensions.scanBuiltinExtensions(WEB_DEV_EXTENSIONS_ROOT))
+	// ]);
+	// for (const ext of localExtensions) {
+	// 	allExtensions.push(ext);
+	// 	locations[ext.extensionPath] = path.join(BUILTIN_EXTENSIONS_ROOT, ext.extensionPath);
+	// }
+	// for (const ext of marketplaceExtensions) {
+	// 	allExtensions.push(ext);
+	// 	locations[ext.extensionPath] = path.join(BUILTIN_MARKETPLACE_EXTENSIONS_ROOT, ext.extensionPath);
+	// }
+	// for (const ext of webDevExtensions) {
+	// 	allExtensions.push(ext);
+	// 	locations[ext.extensionPath] = path.join(WEB_DEV_EXTENSIONS_ROOT, ext.extensionPath);
+	// }
+	// for (const ext of allExtensions) {
+	// 	if (ext.packageJSON.browser) {
+	// 		let mainFilePath = path.join(locations[ext.extensionPath], ext.packageJSON.browser);
+	// 		if (path.extname(mainFilePath) !== '.js') {
+	// 			mainFilePath += '.js';
+	// 		}
+	// 		if (!await exists(mainFilePath)) {
+	// 			fancyLog(`${ansiColors.red('Error')}: Could not find ${mainFilePath}. Use ${ansiColors.cyan('yarn watch-web')} to build the built-in extensions.`);
+	// 		}
+	// 	}
+	// }
 	return { extensions: allExtensions, locations };
 }
 
@@ -351,7 +351,6 @@ async function handleExtension(req, res, parsedUrl) {
  */
 async function handleRoot(req, res) {
 	let folderUri = { scheme: 'memfs', path: `/sample-folder` };
-
 	const match = req.url && req.url.match(/\?([^#]+)/);
 	if (match) {
 		const qs = new URLSearchParams(match[1]);
@@ -378,10 +377,8 @@ async function handleRoot(req, res) {
 			}
 		}
 	}
-
 	const { extensions: builtInExtensions } = await builtInExtensionsPromise;
 	const { extensions: staticExtensions, locations: staticLocations } = await commandlineProvidedExtensionsPromise;
-
 	const dedupedBuiltInExtensions = [];
 	for (const builtInExtension of builtInExtensions) {
 		const extensionId = `${builtInExtension.packageJSON.publisher}.${builtInExtension.packageJSON.name}`;
@@ -400,8 +397,8 @@ async function handleRoot(req, res) {
 
 	const secondaryHost = (
 		req.headers['host']
-		? req.headers['host'].replace(':' + PORT, ':' + SECONDARY_PORT)
-		: `${HOST}:${SECONDARY_PORT}`
+			? req.headers['host'].replace(':' + PORT, ':' + SECONDARY_PORT)
+			: `${HOST}:${SECONDARY_PORT}`
 	);
 	const webConfigJSON = {
 		folderUri: folderUri,

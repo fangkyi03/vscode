@@ -363,7 +363,6 @@ export function scanBuiltinExtensions(extensionsRoot: string, exclude: string[] 
 			const packageNLS = packageNLSPath ? JSON.parse(fs.readFileSync(path.join(extensionsRoot, extensionFolder, packageNLSPath)).toString()) : undefined;
 			const readme = children.filter(child => /^readme(\.txt|\.md|)$/i.test(child))[0];
 			const changelog = children.filter(child => /^changelog(\.txt|\.md|)$/i.test(child))[0];
-
 			scannedExtensions.push({
 				extensionPath: extensionFolder,
 				packageJSON,
